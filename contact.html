@@ -143,13 +143,13 @@
                             <div class="form-group mt-3">
                                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                             </div>
-                            <div class="my-3">
-                                <div class="">
+<!--                             <div class="my-3">
+                                <div class="loading">
                                     <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif" alt="Loading">
                                 </div>
                                 <div class="error-message"></div>
                                 <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div>
+                            </div> -->
                             <div class="text-center"><button type="submit" id="submitButton">Send Message</button></div>
                         </form>
 
@@ -198,10 +198,10 @@
             event.preventDefault(); // Prevent the form from submitting normally
 
             var submitButton = document.getElementById('submitButton');
-            var loadingElement = document.querySelector('.loading');
+            // var loadingElement = document.querySelector('.loading');
 
             // Show the loader
-            loadingElement.style.display = 'flex';
+            // loadingElement.style.display = 'flex';
             submitButton.disabled = true; // Disable the submit button
 
             // Send the form data using Fetch API
@@ -212,7 +212,7 @@
                     'Accept': 'application/json'
                 }
             }).then(response => {
-                loadingElement.style.display = 'none'; // Hide the loader
+                // loadingElement.style.display = 'none'; // Hide the loader
 
                 if (response.ok) {
                     // Show success message
@@ -240,7 +240,7 @@
                     });
                 }
             }).catch(error => {
-                loadingElement.style.display = 'none'; // Hide the loader
+                // loadingElement.style.display = 'none'; // Hide the loader
                 // Show error message
                 Swal.fire({
                     icon: 'error',
