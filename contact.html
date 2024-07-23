@@ -190,6 +190,47 @@
     form.addEventListener('submit', function(e) {
         e.preventDefault();
 
+        // Reset previous errors
+            let hasErrors = false;
+
+            // Validate name
+            const name = document.getElementById('name').value.trim();
+            if (name.length < 2) {
+                alert('Name must be at least 2 characters long.');
+                hasErrors = true;
+            }
+
+            // Validate email
+            const email = document.getElementById('email').value.trim();
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                hasErrors = true;
+            }
+
+            // Validate subject
+            const subject = document.getElementById('subject').value.trim();
+            if (subject.length < 5) {
+                alert('Subject must be at least 5 characters long.');
+                hasErrors = true;
+            }
+
+            // Validate message
+            const message = document.getElementById('message').value.trim();
+            if (message.length < 10) {
+                Swal.fire({
+                title: 'Warning!',
+                text: 'Message must be at least 10 characters long.',
+                icon: 'warning',
+                confirmButtonText: 'OK'
+            });
+                // alert('Message must be at least 10 characters long.');
+                hasErrors = true;
+            }
+
+            if (hasErrors) {
+                return; // Stop the form submission
+            }
         // Show loading gif
         loadingElement.style.display = 'block';
         submitButton.disabled = true;
