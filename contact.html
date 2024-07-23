@@ -31,6 +31,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
     <style>
+        /* Loading screen styling */
         .loading {
             display: none;
             /* Initially hidden */
@@ -78,7 +79,7 @@
             <div class="header-social-links">
                 <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
                 <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/dinkarchauhan720/" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+                <a href="https://www.linkedin.com/in/dinkarchauhan720/" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
 
         </div>
@@ -143,13 +144,11 @@
                             <div class="form-group mt-3">
                                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
                             </div>
-<!--                             <div class="my-3">
+                            <div class="my-3">
                                 <div class="loading">
                                     <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif" alt="Loading">
                                 </div>
-                                <div class="error-message"></div>
-                                <div class="sent-message">Your message has been sent. Thank you!</div>
-                            </div> -->
+                            </div>
                             <div class="text-center"><button type="submit" id="submitButton">Send Message</button></div>
                         </form>
 
@@ -169,10 +168,10 @@
                 &copy; Copyright <strong><span>Kelly</span></strong>. All Rights Reserved
             </div>
             <div class="credits">
-                  Designed by <a href="https://bootstrapmade.com/">Dinkar Chauhan</a>
+                Designed by <a href="https://bootstrapmade.com/">Dinkar Chauhan</a>
             </div>
         </div>
-    </footer><!-- End  Footer -->
+    </footer><!-- End Footer -->
 
     <div id="preloader"></div>
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
@@ -198,11 +197,11 @@
             event.preventDefault(); // Prevent the form from submitting normally
 
             var submitButton = document.getElementById('submitButton');
-            // var loadingElement = document.querySelector('.loading');
+            var loadingElement = document.querySelector('.loading');
 
-            // Show the loader
-            // loadingElement.style.display = 'flex';
-            submitButton.disabled = true; // Disable the submit button
+            // Show the loader when the form is submitted
+            loadingElement.style.display = 'flex';
+            submitButton.disabled = true; // Disable the submit button to prevent multiple submissions
 
             // Send the form data using Fetch API
             fetch(this.action, {
@@ -212,7 +211,7 @@
                     'Accept': 'application/json'
                 }
             }).then(response => {
-                // loadingElement.style.display = 'none'; // Hide the loader
+                loadingElement.style.display = 'none'; // Hide the loader
 
                 if (response.ok) {
                     // Show success message
@@ -240,7 +239,7 @@
                     });
                 }
             }).catch(error => {
-                // loadingElement.style.display = 'none'; // Hide the loader
+                loadingElement.style.display = 'none'; // Hide the loader
                 // Show error message
                 Swal.fire({
                     icon: 'error',
