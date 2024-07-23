@@ -217,14 +217,7 @@
 
             // Validate message
             const message = document.getElementById('message').value.trim();
-            if (message.length < 10) {
-                Swal.fire({
-                title: 'Success!',
-                text: 'Your message has been sent successfully.',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            });
-                // alert('Message must be at least 10 characters long.');
+                alert('Message must be at least 10 characters long.');
                 hasErrors = true;
             }
 
