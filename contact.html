@@ -211,14 +211,7 @@
             // Validate subject
             const subject = document.getElementById('subject').value.trim();
             if (subject.length < 5) {
-                Swal.fire({
-                title: 'Warning!',
-                text: 'Subject must be at least 5 characters long.',
-                icon: 'warning',
-                confirmButtonText: 'OK'
-            });
-
-                // alert('Subject must be at least 5 characters long.');
+                alert('Subject must be at least 5 characters long.');
                 hasErrors = true;
             }
 
