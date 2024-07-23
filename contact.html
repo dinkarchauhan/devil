@@ -193,65 +193,57 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-        document.getElementById('contactForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent the form from submitting normally
+       document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const submitButton = document.getElementById('submitButton');
+    const loadingElement = document.querySelector('.loading');
 
-            var submitButton = document.getElementById('submitButton');
-            var loadingElement = document.querySelector('.loading');
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
 
-            // Show the loader when the form is submitted
-            loadingElement.style.display = 'flex';
-            submitButton.disabled = true; // Disable the submit button to prevent multiple submissions
+        // Show loading gif
+        loadingElement.style.display = 'block';
+        submitButton.disabled = true;
 
-            // Send the form data using Fetch API
-            fetch(this.action, {
-                method: this.method,
-                body: new FormData(this),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                loadingElement.style.display = 'none'; // Hide the loader
+        fetch(form.action, {
+            method: form.method,
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            // Hide loading gif
+            loadingElement.style.display = 'none';
+            submitButton.disabled = false;
 
-                if (response.ok) {
-                    // Show success message
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Message Sent',
-                        text: 'Your message has been sent. Thank you!',
-                        confirmButtonColor: '#3085d6',
-                        confirmButtonText: 'OK'
-                    }).then(() => {
-                        // Reset the form after successful submission
-                        document.getElementById('contactForm').reset();
-                        submitButton.disabled = false; // Enable the submit button
-                    });
-                } else {
-                    // Show error message
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: 'Something went wrong! Please try again later.',
-                        confirmButtonColor: '#d33',
-                        confirmButtonText: 'Retry'
-                    }).then(() => {
-                        submitButton.disabled = false; // Enable the submit button
-                    });
-                }
-            }).catch(error => {
-                loadingElement.style.display = 'none'; // Hide the loader
-                // Show error message
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: 'Something went wrong! Please check your internet connection and try again.',
-                    confirmButtonColor: '#d33',
-                    confirmButtonText: 'Retry'
-                }).then(() => {
-                    submitButton.disabled = false; // Enable the submit button
-                });
+            // Show success message
+            Swal.fire({
+                title: 'Success!',
+                text: 'Your message has been sent successfully.',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+
+            // Reset form
+            form.reset();
+        })
+        .catch(error => {
+            // Hide loading gif
+            loadingElement.style.display = 'none';
+            submitButton.disabled = false;
+
+            // Show error message
+            Swal.fire({
+                title: 'Error!',
+                text: 'There was a problem sending your message. Please try again.',
+                icon: 'error',
+                confirmButtonText: 'OK'
             });
         });
+    });
+});
     </script>
 
 </body>
