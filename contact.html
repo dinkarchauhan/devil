@@ -33,19 +33,12 @@
 <style>
       .loading {
         display: none;
-
-           top: 0;
-            left: 0;
-           
-/*             display: flex; */
-            justify-content: center;
-            align-items: center;
         text-align: center;
     }
 
     .loading img {
-        width: 100px;
-        height: 100px;
+        width: 70px;
+        height: 70px;
     }
 </style>
 </head>
@@ -145,7 +138,9 @@
                                     <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif" alt="Loading">
                                 </div>
                             </div>
-                            <div class="text-center"><button type="submit" id="submitButton">Send Message</button></div>
+                            <button type="submit" class="btn btn-outline-success" data-mdb-ripple-init data-mdb-ripple-color="dark" id="submitButton">Send Message</button>
+
+<!--                             <div class="text-center"><button type="submit" id="submitButton">Send Message</button></div> -->
                         </form>
 
                     </div>
