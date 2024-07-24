@@ -118,9 +118,7 @@
 
                     <div class="col-lg-8 mt-5 mt-lg-0">
 
-<!--                         <form id="contactForm" action="https://formspree.io/f/mwpevbwy" method="POST"> -->
-                            <form id="my-form" action="https://formspree.io/f/mwpevbwy" method="POST">
-
+                        <form id="contactForm" action="https://formspree.io/f/mwpevbwy" method="POST">
                             <div class="row">
                                 <div class="col-md-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -140,9 +138,7 @@
                                     <img src="https://cdn.pixabay.com/animation/2023/10/08/03/19/03-19-26-213_512.gif" alt="Loading">
                                 </div>
                             </div>
-<!--                             <div class="text-center"><button type="submit" id="submitButton">Send Message</button></div> -->
-                            <button class="btn btn-success" id="my-form-button">Submit</button>
-                              <p id="my-form-status"></p>
+                            <div class="text-center"><button type="submit" id="submitButton">Send Message</button></div>
                         </form>
 
                     </div>
@@ -184,40 +180,8 @@
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>
-    
-<script>
-  var form = document.getElementById("my-form");
-  
-  async function handleSubmit(event) {
-    event.preventDefault();
-    var status = document.getElementById("my-form-status");
-    var data = new FormData(event.target);
-    fetch(event.target.action, {
-      method: form.method,
-      body: data,
-      headers: {
-          'Accept': 'application/json'
-      }
-    }).then(response => {
-      if (response.ok) {
-        status.innerHTML = "Thanks for your submission!";
-        form.reset()
-      } else {
-        response.json().then(data => {
-          if (Object.hasOwn(data, 'errors')) {
-            status.innerHTML = data["errors"].map(error => error["message"]).join(", ")
-          } else {
-            status.innerHTML = "Oops! There was a problem submitting your form"
-          }
-        })
-      }
-    }).catch(error => {
-      status.innerHTML = "Oops! There was a problem submitting your form"
-    });
-  }
-  form.addEventListener("submit", handleSubmit)
-</script>
-<!--     <script>
+
+    <script>
        document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
     const submitButton = document.getElementById('submitButton');
@@ -280,8 +244,7 @@
 
             // Show success message
             Swal.fire({
-                title: 'Success!',
-                text: 'Your message has been sent successfully.',
+                text: 'Thanks for your submission!',
                 icon: 'success',
                 confirmButtonText: 'OK'
             });
@@ -304,7 +267,7 @@
         });
     });
 });
-    </script> -->
+    </script>
 
 </body>
 
